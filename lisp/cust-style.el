@@ -1,30 +1,70 @@
+(add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
+(add-to-list 'default-frame-alist '(line-spacing . 0.2))
+
 (setq base16-theme-256-color-source "colors")
 (use-package base16-theme
 	     :ensure t
 	     :config
 	     (load-theme 'base16-default-dark t))
 
+(use-package ligature
+  :ensure t
+  :defer t)
 
-(use-package sr-speedbar
-	     :ensure t)
 
-(defun hide-speedbar-fringes ()
-  "Hides the fringes of the Speedbar."
-  (set-window-fringes (get-window-with-predicate
-                       (lambda (window)
-                         (string-equal "*SPEEDBAR*" (buffer-name (window-buffer window)))))
-                      5 5))
-(defun toggle-speedbar ()
+(use-package treemacs-all-the-icons
+      :ensure t
+      :defer t
+      :config
+    )
+
+(use-package treemacs
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (setq treemacs-position 'left)
+    (treemacs-resize-icons 16)
+    (set-face-attribute 'treemacs-root-face nil
+                        :height 1.0
+                        :underline nil
+                        )
+    (set-face-attribute 'treemacs-directory-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-file-face nil 
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-renamed-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-modified-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-conflict-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-added-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-untracked-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-unmodified-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-commit-diff-face nil
+                        :font "JetBrains Mono-11")
+    (set-face-attribute 'treemacs-git-ignored-face nil
+                        :font "JetBrains Mono-11")
+    (require 'treemacs-all-the-icons)
+    (treemacs-load-theme "all-the-icons")
+    )
+  )
+  
+
+
+(defun toggle-treemacs ()
   "Custom function to start the speedbar."
   (interactive)
-  (sr-speedbar-toggle)
-  (if (sr-speedbar-exist-p)
-      (hide-speedbar-fringes))
+  (treemacs)
   )
 
 ;;; Key bindings
-(global-set-key (kbd "C-c s") 'toggle-speedbar)
-(global-set-key (kbd "C-c d") 'linum-mode)
+(global-set-key (kbd "C-c s") 'toggle-treemacs)
+(global-set-key (kbd "C-c d") 'display-line-numbers-mode)
 
 
 (use-package powerline
