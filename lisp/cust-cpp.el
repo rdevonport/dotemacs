@@ -1,27 +1,21 @@
-(use-package irony-mode
-	     :ensure t)
+(add-hook 'c++-mode-hook #'lsp)
+(add-hook 'c++-mode-hook #'electric-pair-mode)
 
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
+(ligature-set-ligatures '(c++-mode) '("=>" "==" "!=" "<=" ">=" "==="))
+(add-hook 'c++-mode-hook
+          #'ligature-mode)
 
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-hook 'c-mode-hook #'lsp)
+(add-hook 'c-mode-hook #'electric-pair-mode)
 
+(ligature-set-ligatures '(c-mode) '("=>" "==" "!=" "<=" ">=" "==="))
+(add-hook 'c-mode-hook
+          #'ligature-mode)
 
-(use-package company-irony
-  :ensure t)
-(use-package company-irony-c-headers
-  :ensure t)
+(use-package meson-mode
+  :ensure t
+  :defer t)
 
-(eval-after-load 'company
-  '(add-to-list
-    'company-backends '(company-irony-c-headers company-irony)))
-
-(use-package flycheck-irony
-  :ensure t)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-
-
+(require 'meson-dap)
 
 (provide 'cust-cpp)

@@ -11,6 +11,7 @@
           (lambda () (local-set-key (kbd "C-c v") #'pipenv-activate)))
 
 (require 'dap-python)
+(require 'pyvenv-dap)
 ;; if you installed debugpy, you need to set this
 ;; https://github.com/emacs-lsp/dap-mode/issues/306
 (setq dap-python-debugger 'debugpy)

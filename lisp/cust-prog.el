@@ -46,15 +46,12 @@
 (add-hook 'dap-stopped-hook
           (lambda (arg) (call-interactively #'dap-hydra)))
 
-;;; Key bindings
-(global-set-key (kbd "C-c c") 'company-yasnippet)
-(global-set-key (kbd "C-.") 'company-filter-candidates)
-
 (require 'cust-ts)
+(require 'cust-cs)
 (require 'cust-py)
 (require 'cust-vue)
 (require 'cust-elisp)
-;; (require 'cust-cpp)
+(require 'cust-cpp)
 
 
 (provide 'cust-prog)

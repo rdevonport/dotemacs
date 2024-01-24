@@ -62,11 +62,6 @@
   (treemacs)
   )
 
-;;; Key bindings
-(global-set-key (kbd "C-c s") 'toggle-treemacs)
-(global-set-key (kbd "C-c d") 'display-line-numbers-mode)
-
-
 (use-package powerline
 	     :ensure t
 	     :config

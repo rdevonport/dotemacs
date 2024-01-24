@@ -3,5 +3,6 @@
 (require 'cust-style)
 (require 'cust-prog)
 (require 'cust-org)
-
+(require 'cust-projects)
+(require 'cust-keymap)
 (provide 'dotemacs)
