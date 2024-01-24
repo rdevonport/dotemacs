@@ -46,14 +46,14 @@
      (if (not (cust-projects--meson-file-is-impl file))
          (list :impl (
                       cust-projects--find-project-file
-                      "/home/rory/source/ghoti/"
+                      (projectile-project-root)
                       (plist-get fileparts :name )
                       ".cpp")) nil
          )
      (if (not (cust-projects--meson-file-is-test file))
          (list :test (
                       cust-projects--find-project-file
-                      "/home/rory/source/ghoti/"
+                      (projectile-project-root)
                       (plist-get fileparts :name )
                       ".test.cpp")) nil
          )
@@ -61,7 +61,7 @@
      (if (not (cust-projects--meson-file-is-decl file))
          (list :decl (
                       cust-projects--find-project-file
-                      "/home/rory/source/ghoti/"
+                      (projectile-project-root)
                       (plist-get fileparts :name )
                       ".hpp")) nil)
      
